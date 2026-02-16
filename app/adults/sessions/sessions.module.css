@@ -1,0 +1,123 @@
+/* نفس الروح بتاعة adults.module.css بس أبسط */
+.page {
+  direction: rtl;
+  min-height: 100vh;
+  background: #fff;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 18px 16px 40px;
+}
+
+.back {
+  display: inline-block;
+  margin-bottom: 12px;
+  text-decoration: none;
+  color: #1f6fb2;
+  font-weight: 900;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 360px;
+  gap: 18px;
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .grid { grid-template-columns: 1fr; }
+}
+
+.card {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  box-shadow: 0 10px 24px rgba(0,0,0,0.08);
+}
+
+.cardHeader { padding: 14px 14px 0; }
+.cardTitle { margin: 0; font-size: 16px; color: #1f6fb2; font-weight: 900; }
+.cardSub { margin: 6px 0 0; color: #6b7280; font-size: 13px; }
+
+.cardBody { padding: 14px; }
+
+.kpis {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+}
+.badge {
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid #e5e7eb;
+  font-weight: 900;
+  font-size: 12px;
+  background: #fff;
+}
+.blue { background: #eef6ff; border-color: #d8e9ff; color: #1f6fb2; }
+.green { background: #effaf7; border-color: #cfeee6; color: #1f8a70; }
+.red { background: #fff2f2; border-color: #ffd2d2; color: #d12b2b; }
+
+.input {
+  width: 100%;
+  border: 1px solid #e5e7eb;
+  padding: 10px 12px;
+  border-radius: 12px;
+  outline: none;
+}
+.input:focus {
+  border-color: #b9ddff;
+  box-shadow: 0 0 0 3px rgba(31,111,178,0.12);
+}
+
+.btn {
+  border: 1px solid transparent;
+  padding: 10px 14px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 900;
+  transition: 0.15s ease;
+}
+.btnPrimary { background: #1f6fb2; color: #fff; }
+.btnPrimary:hover { background: #2b84d6; }
+.btnPrimary:active { transform: translateY(1px); }
+
+.btnDanger {
+  background: #fff;
+  border-color: #ffd2d2;
+  color: #d12b2b;
+}
+.btnDanger:hover { background: #fff2f2; }
+.btnDanger:active { transform: translateY(1px); }
+
+.tableWrap {
+  overflow: auto;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 700px;
+}
+.table th {
+  background: #f3f7fb;
+  text-align: right;
+  padding: 10px;
+  border-bottom: 1px solid #e5e7eb;
+  font-size: 13px;
+}
+.table td {
+  padding: 10px;
+  border-bottom: 1px solid #e5e7eb;
+  font-size: 13px;
+}
+
+.notice {
+  color: #d12b2b;
+  font-weight: 900;
+}

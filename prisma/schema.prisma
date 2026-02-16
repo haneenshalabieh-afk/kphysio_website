@@ -1,0 +1,50 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model Department {
+  id       Int       @id @default(autoincrement())
+  name     String    @unique
+  patients Patient[]
+}
+
+model Patient {
+  id        Int      @id @default(autoincrement())
+  name      String?
+  phone     String   @unique
+  createdAt DateTime @default(now())
+
+  totalSessions Int @default(0)
+  sessionPrice  Int @default(0)
+
+  departmentId Int
+  department   Department @relation(fields: [departmentId], references: [id])
+
+  sessions Session[]
+}
+enum PaymentMethod {
+  CASH
+  INSTAPAY
+}
+
+
+model Session {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  doctor    String
+
+  patientId Int
+  patient   Patient @relation(fields: [patientId], references: [id], onDelete: Cascade)
+  isPaid  Boolean @default(false)
+  paymentMethod PaymentMethod?
+  paidAt        DateTime?
+
+  @@index([patientId])
+}
+
