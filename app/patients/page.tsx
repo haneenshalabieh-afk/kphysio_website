@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { revalidatePath } from "next/cache";
 import { prisma } from "@/lib/prisma";
+import { redirect } from "next/navigation";
 
 type AdultsSearchParams = {
   q?: string;
@@ -11,7 +12,7 @@ export const revalidate = 0;
 
 
 
-export default async function AdultsPage({
+export default async function PatientsPage({
   searchParams,
 }: {
   searchParams: Promise<AdultsSearchParams>;
@@ -28,7 +29,7 @@ export default async function AdultsPage({
       <div className="page">
         <div className="container">
           <div className="alert">
-            <b>قسم الكبار</b>
+            <b>سجل المرضى </b>
             <div>مش لاقي Department باسم Adults. اعملي Insert للـ Department الأول.</div>
           </div>
         </div>
@@ -70,7 +71,7 @@ export default async function AdultsPage({
       },
     });
 
-    revalidatePath("/adults");
+    revalidatePath("/patients");
   }
 
   // Patients list + count of sessions taken
@@ -116,7 +117,7 @@ export default async function AdultsPage({
             <Link className="btn btnGhost" href="/">
               الرئيسية
             </Link>
-            <span className="badge">قسم الكبار</span>
+            <span className="badge">قسم سجل المرضى</span>
           </div>
         </div>
 
@@ -128,8 +129,8 @@ export default async function AdultsPage({
 <div className="row">
   {/* Search form */}
 
-  
-  <form action="/adults" method="get" className="toolbar" style={{ flex: 1 }}>
+
+  <form action="/patients" method="get" className="toolbar" style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
     <input
       className="input"
       name="q"
@@ -137,7 +138,8 @@ export default async function AdultsPage({
 
       placeholder="ابحث بالاسم أو رقم التليفون"
     />
-    <div>  <button className="btn btnPrimary" type="submit">
+    
+    <div>  <button className="btn btnPrimary" style={{ alignSelf: "flex-start"}}>
       بحث
     </button> </div>
   </form>  
@@ -147,37 +149,22 @@ export default async function AdultsPage({
         
 
         {/* Add patient */}
-        <div className="card">
-          <div className="card__title">إضافة مريض كبار</div>
-
-          <form action={addAdultPatient} className="grid">
-            <div>
-              <label className="label">رقم التليفون (مطلوب)</label>
-              <input className="input" name="phone" placeholder="مثال: 4455667788" />
-            </div>
-
-            <div>
-              <label className="label">اسم المريض (اختياري)</label>
-              <input className="input" name="name" placeholder="مثال: أحمد" />
-            </div>
-
-            <div>
-              <label className="label">إجمالي عدد الجلسات</label>
-              <input className="input" name="totalSessions" type="number" defaultValue={0} />
-            </div>
-
-            <div>
-              <label className="label">سعر الجلسة</label>
-              <input className="input" name="sessionPrice" type="number" defaultValue={0} />
-            </div>
-
-            <div className="grid__full">
-              <button className="btn btnPrimary" type="submit">
-                حفظ المريض
-              </button>
-            </div>
-          </form>
-        </div>
+<div style={{ display: "flex", justifyContent: "center", marginTop: "20px" }}>
+  <Link
+    href="/patients/new"
+    style={{
+      backgroundColor: "#ee0563ff",
+      color: "white",
+      padding: "10px 24px",
+      borderRadius: "8px",
+      textDecoration: "none",
+      fontWeight: "600",
+      display: "inline-block"
+    }}
+  >
+    إضافة مريض جديد
+  </Link>
+</div>
 
         {/* Table */}
         <div className="card">

@@ -1,0 +1,238 @@
+.wrap{
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  direction: rtl;         /* مهم */
+}
+
+.card{
+  width: 80vw;            /* ياخد مساحة كبيرة */
+  max-width: 1200px;      /* سقف كويس */
+  padding: 40px 45px;
+  border-radius: 18px;
+  background: rgba(255,255,255,0.65);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(0,0,0,0.06);
+}
+
+/* الهيدر بتاع اللوجو */
+.header{
+  display: flex;
+  justify-content: flex-end; /* يمين */
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.logo{
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 1;
+  text-align: right;
+}
+.logo span{
+  color: #c2185b; /* لون حرف K (عدليه لو عايزة) */
+}
+
+/* الجريد بتاع الحقول */
+.grid{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px 22px;
+  align-items: start;
+}
+
+/* كل حقل */
+.field{
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* الليبل يمين */
+.label{
+  font-size: 14px;
+  opacity: 0.85;
+  text-align: right;
+}
+
+/* الانبتس يمين */
+.input{
+  height: 46px;
+  border-radius: 12px;
+  border: 1px solid rgba(0,0,0,0.12);
+  padding: 0 14px;
+  text-align: right;
+  direction: rtl;
+  background: rgba(255,255,255,0.8);
+}
+
+/* الحقول اللي تاخد صف كامل (زي العنوان) */
+.full{
+  grid-column: 1 / -1;
+}
+
+/* مكان زرار الحفظ */
+.actions{
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: flex-end; /* يمين */
+  margin-top: 10px;
+}
+
+/* زرار حفظ المريض */
+.saveBtn{
+  height: 46px;
+  padding: 0 22px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  font-weight: 700;
+  color: #fff;
+  background: #2563eb;  /* أزرق زي زرار البحث */
+}
+.saveBtn:hover{
+  filter: brightness(0.95);
+}
+
+/* ريسبونسيف للموبايل */
+@media (max-width: 900px){
+  .card{ width: 92vw; padding: 28px 20px; }
+  .grid{ grid-template-columns: 1fr; }
+  .actions{ justify-content: stretch; }
+  .saveBtn{ width: 100%; }
+}
+
+.actions {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center; /* يخليه في النص */
+}
+
+.submitBtn {
+  background-color: #2563eb; /* نفس الأزرق بتاع البحث */
+  color: white;
+  border: none;
+  padding: 12px 40px;
+  font-size: 16px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.submitBtn:hover {
+  background-color: #1e4fd8;
+  transform: translateY(-1px);
+}
+
+
+
+
+.birthField{
+  position: relative;
+  width: 100%;
+}
+
+.birthInput{
+  width: 100%;
+  height: 44px;
+  border-radius: 12px;
+  padding: 0 50px 0 12px; /* مساحة للأيقونة */
+  font-size: 14px;
+  border: 5px solid #ddd;
+  background: transparent;
+}
+
+/* الأيقونة */
+.calendarIcon{
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 10px;
+  pointer-events: none; /* عشان الضغط يروح للـ overlay */
+}
+
+/* input type="date" الشفاف فوق الأيقونة */
+.dateOverlay{
+  position: absolute;
+  left: 6px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 34px;
+  height: 34px;
+  opacity: 0;
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  z-index: 5;
+}
+
+/* ==== Gallery تحت الفورم ==== */
+.galleryWrap {
+  margin-top: 18px;
+  width: 100%;
+}
+
+.galleryBox {
+  position: relative;
+  width: 100%;
+  height: 170px; /* غيريها: 160 / 200 / 240 حسب ما تحبي */
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background: rgba(255, 255, 255, 0.6);
+}
+
+.galleryImg {
+  object-fit: cover;
+}
+
+/* أزرار يمين/شمال */
+.galleryBtnLeft,
+.galleryBtnRight {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 38px;
+  height: 38px;
+  border-radius: 999px;
+  border: 0;
+  cursor: pointer;
+  background: rgba(0, 0, 0, 0.35);
+  color: white;
+  font-size: 28px;
+  line-height: 0;
+  display: grid;
+  place-items: center;
+}
+
+.galleryBtnLeft {
+  left: 10px;
+}
+.galleryBtnRight {
+  right: 10px;
+}
+
+/* نقاط تحت */
+.galleryDots {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+}
+
+.galleryDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  border: 0;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.55);
+}
+
+.galleryDotActive {
+  background: rgba(255, 255, 255, 0.95);
+}
