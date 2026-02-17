@@ -23,7 +23,7 @@ export default function NewPatientPage() {
 
  <div className={styles.field}>
  <label className={styles.label}> اسم المريض كامل </label>  
- <input className={styles.input} />
+ <input className={styles.input} name="name" />
  </div>
  
 
@@ -38,49 +38,49 @@ export default function NewPatientPage() {
  {/*  اسم الأب */}
  <div className={styles.field}>
  <label className={styles.label}> اسم الأب </label>  
- <input className={styles.input} />
+ <input className={styles.input} name="fatherName" />
  </div>
 
 
  {/*    اسم الأم */}
  <div className={styles.field}>
  <label className={styles.label}> اسم الأم </label>  
- <input className={styles.input} />
+ <input className={styles.input} name="motherName" />
  </div>
 
 
  {/*  رقم الهاتف الأساسي*/}
  <div className={styles.field}>
  <label className={styles.label}> رقم الهاتف الأساسي </label>  
- <input className={styles.input} />
+ <input className={styles.input} name="phone" />
  </div>
 
 
  {/*  رقم الهاتف البديل*/}
  <div className={styles.field}>
  <label className={styles.label}> رقم الهاتف البديل </label>  
- <input className={styles.input} />
+ <input className={styles.input} name="phone2" />
  </div>
 
 
  {/*  رقم الهاتف الواتس آب*/}
  <div className={styles.field}>
  <label className={styles.label}> رقم الهاتف الواتس آب </label>  
- <input className={styles.input} />
+ <input className={styles.input} name="whatsapp" />
  </div>
 
 
  {/*   جهة التحويل*/}
  <div className={styles.field}>
  <label className={styles.label}> جهة التحويل </label>  
- <input className={styles.input} />
+ <input className={styles.input} name="referralForm" />
  </div>
   
 
    {/*  عنوان المنزل   */}
  <div className={`${styles.field} ${styles.full}`}>
  <label className={styles.label}> عنوان المنزل </label>  
- <input className={styles.input} />
+ <input className={styles.input} name="address" />
  </div>
 
 

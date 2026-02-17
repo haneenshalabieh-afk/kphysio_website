@@ -8,8 +8,10 @@ export async function createPatient(formData: FormData) {
 
   const birthDateRaw = formData.get("birthDate")?.toString();
   const birthDate = birthDateRaw ? new Date(birthDateRaw) : null;
-
-  const phone = formData.get("phone")?.toString() || "";
+  
+  const phoneRaw = formData.get("phone");
+const phone = phoneRaw ? phoneRaw.toString().trim() : null;
+if (!phone) redirect("/patients/new?error=phone_required");
   const phone2 = formData.get("phone2")?.toString() || null;
   const whatsapp = formData.get("whatsapp")?.toString() || null;
 
@@ -22,6 +24,8 @@ export async function createPatient(formData: FormData) {
   const motherName = formData.get("motherName")?.toString() || null;
 
   const departmentId = 1;
+  console.log("FORM DATA ENTRIES:", Array.from(formData.entries()));
+   console.log("PHONE RAW:", formData.get("phone"));
 
   await prisma.patient.create({
     data: {
