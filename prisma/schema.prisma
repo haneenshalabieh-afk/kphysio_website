@@ -8,6 +8,7 @@ datasource db {
   directUrl = env("DIRECT_URL")
 }
 
+
 model Department {
   id       Int       @id @default(autoincrement())
   name     String    @unique
@@ -17,15 +18,26 @@ model Department {
 model Patient {
   id        Int      @id @default(autoincrement())
   name      String?
-  phone     String   @unique
   createdAt DateTime @default(now())
 
+  //phone
+  phone     String   @unique
+  phone2    String?
+  whatsapp   String?
+
+  // extra  info
+  birthDate     DateTime?
+  address       String?
+  referralForm   String?
+  fatherName     String?
+  motherName     String?   
+
+
+  //data money
   totalSessions Int @default(0)
   sessionPrice  Int @default(0)
-
   departmentId Int
   department   Department @relation(fields: [departmentId], references: [id])
-
   sessions Session[]
 }
 enum PaymentMethod {
@@ -41,6 +53,8 @@ model Session {
 
   patientId Int
   patient   Patient @relation(fields: [patientId], references: [id], onDelete: Cascade)
+
+
   isPaid  Boolean @default(false)
   paymentMethod PaymentMethod?
   paidAt        DateTime?
