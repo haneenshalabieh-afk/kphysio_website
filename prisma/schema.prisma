@@ -3,11 +3,10 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
   directUrl = env("DIRECT_URL")
 }
-
 
 model Department {
   id       Int       @id @default(autoincrement())
@@ -16,36 +15,75 @@ model Department {
 }
 
 model Patient {
-  id        Int      @id @default(autoincrement())
-  name      String?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id   Int     @id @default(autoincrement())
+  name String?
 
   //phone
-  phone     String   @unique
-  phone2    String?
-  whatsapp   String?
+  phone    String  @unique
+  phone2   String?
+  whatsapp String?
 
   // extra  info
-  birthDate     DateTime?
-  address       String?
-  referralForm   String?
-  fatherName     String?
-  motherName     String?   
-
+  birthDate    DateTime?
+  address      String?
+  referralForm String?
+  fatherName   String?
+  motherName   String?
 
   //data money
-  totalSessions Int @default(0)
-  sessionPrice  Int @default(0)
-  departmentId Int
-  department   Department @relation(fields: [departmentId], references: [id])
-  sessions Session[]
+  totalSessions Int        @default(0)
+  sessionPrice  Int        @default(0)
+  departmentId  Int
+  department    Department @relation(fields: [departmentId], references: [id])
+  sessions      Session[]
+
+  profile PatientProfile?
+  files   PatientFile[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
+
 enum PaymentMethod {
   CASH
   INSTAPAY
 }
 
+model PatientProfile {
+  id        Int     @id @default(autoincrement())
+  patientId Int     @unique
+  patient   Patient @relation(fields: [patientId], references: [id], onDelete: Cascade)
+
+  diagnosis   String? @db.Text
+  medications String? @db.Text
+  allergies   String? @db.Text
+  notes       String? @db.Text
+
+  sessionsPhysio Int? @default(0)
+  sessionsPsych  Int? @default(0)
+  sessionsSpeech Int? @default(0)
+  sessionsSkills Int? @default(0)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model PatientFile {
+  id        Int     @id @default(autoincrement())
+  patientId Int
+  patient   Patient @relation(fields: [patientId], references: [id], onDelete: Cascade)
+
+  type  FileType
+  title String?
+  url   String
+
+  createdAt DateTime @default(now())
+}
+
+enum FileType {
+  XRAY
+  REPORT
+}
 
 model Session {
   id        Int      @id @default(autoincrement())
@@ -55,11 +93,9 @@ model Session {
   patientId Int
   patient   Patient @relation(fields: [patientId], references: [id], onDelete: Cascade)
 
-
-  isPaid  Boolean @default(false)
+  isPaid        Boolean        @default(false)
   paymentMethod PaymentMethod?
   paidAt        DateTime?
 
   @@index([patientId])
 }
-
